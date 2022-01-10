@@ -8,7 +8,8 @@
 import UIKit
 import SnapKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController
+{
 
     private let imageView: UIImageView = {
        let imageView = UIImageView()
@@ -16,47 +17,48 @@ class ViewController: UIViewController {
         return imageView
     }()
     
-    override func viewDidLoad() {
+    
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         view.addSubview(imageView)
         view.backgroundColor = .white
-        
-        
     }
     
+    
     var restrictRotation:UIInterfaceOrientationMask = .all
-
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool)
+    {
         (UIApplication.shared.delegate as! AppDelegate).restrictRotation = .portrait
     }
     
-    override func viewWillLayoutSubviews() {
+    override func viewWillLayoutSubviews()
+    {
         super.viewWillLayoutSubviews()
         imageView.center = view.center
         imageView.snp.makeConstraints { make in
             make.width.height.equalTo(200)
         }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.animate()
-        }
+        disptch()
     }
         
         private func animate(){
-            UIView.animate(withDuration: 1) {
+            UIView.animate(withDuration: 1)
+            {
                 let size = self.view.frame.width * 3
                 let diffX = size - self.view.frame.size.width
                 let diffY = self.view.frame.size.height - size
-                
                 self.imageView.frame = CGRect(x: -(diffX/2), y: diffY/2, width: size, height: size)
             }
             
-            UIView.animate(withDuration: 1.5) {
+            UIView.animate(withDuration: 1.5)
+            {
                 self.imageView.alpha = 0
-                
             }completion: { done in
-                if done {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                if done
+                {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3)
+                    {
                         let viewController = HomeViewController()
                         viewController.modalTransitionStyle = .crossDissolve
                         viewController.modalPresentationStyle = .fullScreen
@@ -66,7 +68,11 @@ class ViewController: UIViewController {
             }
         }
     
-
-
+   private func disptch()
+    {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.animate()
+        }
+    }
 }
 
