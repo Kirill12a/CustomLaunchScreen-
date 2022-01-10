@@ -20,6 +20,13 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.addSubview(imageView)
         
+        
+    }
+    
+    var restrictRotation:UIInterfaceOrientationMask = .all
+
+    override func viewWillAppear(_ animated: Bool) {
+        (UIApplication.shared.delegate as! AppDelegate).restrictRotation = .portrait
     }
     
     override func viewWillLayoutSubviews() {
