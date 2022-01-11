@@ -13,7 +13,7 @@ class HomeViewController: UIViewController
 {
     func elements()
     {
-        let bit: UIButton = {
+        let _ : UIButton = {
             let button = UIButton(type: .system)
             button.backgroundColor = .orange
             button.setTitle("Hello Push me", for: .normal)
@@ -29,7 +29,7 @@ class HomeViewController: UIViewController
             return button
         }()
         
-        let label: UILabel = {
+        let _ : UILabel = {
            let label = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
             label.textAlignment = .center
             label.font = .systemFont(ofSize: 24, weight: .bold)
