@@ -10,9 +10,9 @@ import SnapKit
 
 class ViewController: UIViewController
 {
-
+    
     private let imageView: UIImageView = {
-       let imageView = UIImageView()
+        let imageView = UIImageView()
         imageView.image = UIImage(named: "logo")
         return imageView
     }()
@@ -41,34 +41,34 @@ class ViewController: UIViewController
         }
         disptch()
     }
+    
+    private func animate(){
+        UIView.animate(withDuration: 1)
+        {
+            let size = self.view.frame.width * 3
+            let diffX = size - self.view.frame.size.width
+            let diffY = self.view.frame.size.height - size
+            self.imageView.frame = CGRect(x: -(diffX/2), y: diffY/2, width: size, height: size)
+        }
         
-        private func animate(){
-            UIView.animate(withDuration: 1)
+        UIView.animate(withDuration: 1.5)
+        {
+            self.imageView.alpha = 0
+        }completion: { done in
+            if done
             {
-                let size = self.view.frame.width * 3
-                let diffX = size - self.view.frame.size.width
-                let diffY = self.view.frame.size.height - size
-                self.imageView.frame = CGRect(x: -(diffX/2), y: diffY/2, width: size, height: size)
-            }
-            
-            UIView.animate(withDuration: 1.5)
-            {
-                self.imageView.alpha = 0
-            }completion: { done in
-                if done
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3)
                 {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3)
-                    {
-                        let viewController = HomeViewController()
-                        viewController.modalTransitionStyle = .crossDissolve
-                        viewController.modalPresentationStyle = .fullScreen
-                        self.present(viewController, animated: true)
-                    }
+                    let viewController = HomeViewController()
+                    viewController.modalTransitionStyle = .crossDissolve
+                    viewController.modalPresentationStyle = .fullScreen
+                    self.present(viewController, animated: true)
                 }
             }
         }
+    }
     
-   private func disptch()
+    private func disptch()
     {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.animate()

@@ -30,7 +30,7 @@ class HomeViewController: UIViewController
         }()
         
         let _ : UILabel = {
-           let label = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
+            let label = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
             label.textAlignment = .center
             label.font = .systemFont(ofSize: 24, weight: .bold)
             label.text = "Hello World!"
